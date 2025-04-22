@@ -12,7 +12,7 @@ struct ContentView: View {
     @State var AppVM: AppViewModel = .init()
     var body: some View {
         NavigationStack {
-                HomeView(GlobeVM: GlobeVM, AppVM: $AppVM)
+            HomeView(GlobeVM: GlobeVM, AppVM: $AppVM)
                 .toolbar()
         }
     }

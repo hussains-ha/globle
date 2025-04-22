@@ -199,7 +199,6 @@ class GlobeViewModel {
 
         revaledCountries.append(name)
 
-        // ✅ Check distance between guessed country and target
         if let guessed = countries.first(where: {
             if case let .string(n) = $0.properties["ADMIN"] {
                 return n == name

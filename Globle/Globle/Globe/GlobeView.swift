@@ -11,11 +11,10 @@ import SwiftUI
 
 struct GlobeView: UIViewRepresentable {
     var GlobeVM: GlobeViewModel
-    
 
     func makeUIView(context: Context) -> SCNView {
         let sceneView = SCNView()
-        
+
         sceneView.scene = SCNScene()
         sceneView.allowsCameraControl = true
         sceneView.autoenablesDefaultLighting = true

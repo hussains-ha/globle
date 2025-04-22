@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct Toolbar: ViewModifier {
-    
     func body(content: Content) -> some View {
         content
             .toolbar {
@@ -17,11 +16,9 @@ struct Toolbar: ViewModifier {
                     Text("Globle")
                         .font(Font.custom("Montserrat", size: 50))
                 }
-                
+
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        
-                    } label: {
+                    Button {} label: {
                         Image(systemName: "gear")
                             .resizable()
                             .foregroundStyle(.black)

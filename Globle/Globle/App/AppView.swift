@@ -48,7 +48,7 @@ struct AppView: View {
                 }
 
                 GlobeView(GlobeVM: GlobleVM)
-                
+
                 Text("Cloest Country: \(GlobleVM.closestCountry)")
                 Text("Distance to country: \(GlobleVM.closestDistance == 50000 ? "" : "\(Int(GlobleVM.closestDistance)) km") ")
             }
