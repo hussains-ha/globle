@@ -1,0 +1,15 @@
+{
+  "originHash" : "2ca096f5820fab0c8421a1b4c95f2e5e7af69ec998596d4210c8b45f7bfe7876",
+  "pins" : [
+    {
+      "identity" : "swiftearcut",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/measuredweighed/SwiftEarcut.git",
+      "state" : {
+        "revision" : "f72356da8b873da27d869120c08d4a3009b6bf12",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
