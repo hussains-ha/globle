@@ -16,14 +16,14 @@ class GlobeViewModel {
     var geoJSON: GeoJSON?
     var countries: [Feature] = []
     var countryNodes: [SCNNode] = []
-    let globeRadius: Double = 1.01
+    let globeRadius: Double = 1.02
     var countryNodesByName: [String: [SCNNode]] = [:]
-    var revaledCountries: [String] = []
+    var revealedCountries: [String] = []
     var globeNode: SCNNode?
     var closestCountry: String = ""
     var closestDistance: Double = 50000.0
 
-    let targetCountryName = "Argentina"
+    let targetCountryName = "Estonia"
 
     init() {
         loadGeoJSON()
@@ -32,13 +32,10 @@ class GlobeViewModel {
     private func loadGeoJSON() {
         do {
             guard let url = Bundle.main.url(forResource: "countries", withExtension: "geojson") else {
-                print("Could not find countries.geojson in bundle")
                 return
             }
             let data = try Data(contentsOf: url)
             let geo = try JSONDecoder().decode(GeoJSON.self, from: data)
-
-            print("Loaded geoJSON file with \(geo.features.count) features")
 
             geoJSON = geo
             countries = geo.features
@@ -193,11 +190,11 @@ class GlobeViewModel {
             return false
         }
 
-        if revaledCountries.contains(name) {
+        if revealedCountries.contains(name) {
             return false
         }
 
-        revaledCountries.append(name)
+        revealedCountries.append(name)
 
         if let guessed = countries.first(where: {
             if case let .string(n) = $0.properties["ADMIN"] {

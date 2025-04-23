@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppView: View {
-    public var GlobleVM: GlobeViewModel
+    public var GlobeVM: GlobeViewModel
     @Binding var AppVM: AppViewModel
 
     var body: some View {
@@ -26,12 +26,17 @@ struct AppView: View {
                     .disabled(AppVM.isGameOver)
                     .onSubmit {
                         AppVM.showGuessError = false
+                        AppVM.alreadyGuessed = false
 
-                        if AppVM.countryGuess == GlobleVM.targetCountryName {
+                        if AppVM.countryGuess == GlobeVM.targetCountryName {
                             AppVM.isGameOver = true
                         }
 
-                        if !GlobleVM.revealCountry(name: AppVM.countryGuess) {
+                        if GlobeVM.revealedCountries.contains(AppVM.countryGuess) {
+                            AppVM.alreadyGuessed = true
+                        }
+
+                        if !GlobeVM.revealCountry(name: AppVM.countryGuess) && !AppVM.alreadyGuessed {
                             AppVM.showGuessError = true
                         }
                         AppVM.countryGuess = ""
@@ -43,14 +48,19 @@ struct AppView: View {
                 }
 
                 if AppVM.isGameOver {
-                    Text("The mystery country is \(GlobleVM.targetCountryName)")
+                    Text("The mystery country is \(GlobeVM.targetCountryName)")
                         .foregroundStyle(.green)
                 }
 
-                GlobeView(GlobeVM: GlobleVM)
+                if AppVM.alreadyGuessed {
+                    Text("Country already guessed!")
+                        .foregroundStyle(.red)
+                }
 
-                Text("Cloest Country: \(GlobleVM.closestCountry)")
-                Text("Distance to country: \(GlobleVM.closestDistance == 50000 ? "" : "\(Int(GlobleVM.closestDistance)) km") ")
+                GlobeView(GlobeVM: GlobeVM)
+
+                Text("Cloest Country: \(GlobeVM.closestCountry)")
+                Text("Distance to country: \(GlobeVM.closestDistance == 50000 ? "" : "\(Int(GlobeVM.closestDistance)) km") ")
             }
         }
     }
@@ -59,5 +69,5 @@ struct AppView: View {
 #Preview {
     @Previewable @State var AppVM = AppViewModel()
     @Previewable @State var GlobeVM = GlobeViewModel()
-    AppView(GlobleVM: GlobeVM, AppVM: $AppVM)
+    AppView(GlobeVM: GlobeVM, AppVM: $AppVM)
 }

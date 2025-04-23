@@ -14,4 +14,5 @@ import SwiftUI
     var isGameOver: Bool = false
     var showGuessError: Bool = false
     var showSettings: Bool = false
+    var alreadyGuessed: Bool = false
 }

@@ -24,7 +24,7 @@ struct HomeView: View {
                     .font(Font.custom("Montserrat", size: 30))
 
                 NavigationLink(destination:
-                    AppView(GlobleVM: GlobeVM, AppVM: $AppVM)
+                    AppView(GlobeVM: GlobeVM, AppVM: $AppVM)
                     .toolbar()
 
                 ) {

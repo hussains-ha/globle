@@ -19,6 +19,7 @@ struct GlobeView: UIViewRepresentable {
         sceneView.allowsCameraControl = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.backgroundColor = .clear
+        sceneView.rendersContinuously = false
 
         let globeNode = createGlobe()
         sceneView.scene?.rootNode.addChildNode(globeNode)
@@ -41,6 +42,7 @@ struct GlobeView: UIViewRepresentable {
     func createGlobe() -> SCNNode {
         let sphere = SCNSphere(radius: 1.0)
 
+        sphere.segmentCount = 64
         sphere.firstMaterial?.diffuse.contents = UIImage(named: "earth.png")
         sphere.firstMaterial?.isDoubleSided = true
         return SCNNode(geometry: sphere)
