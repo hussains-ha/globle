@@ -28,15 +28,15 @@ struct AppView: View {
                         AppVM.showGuessError = false
                         AppVM.alreadyGuessed = false
 
-                        if AppVM.countryGuess == GlobeVM.targetCountryName {
+                        if AppVM.countryGuess.trimmingCharacters(in: .whitespacesAndNewlines) == GlobeVM.targetCountryName {
                             AppVM.isGameOver = true
                         }
 
-                        if GlobeVM.revealedCountries.contains(AppVM.countryGuess) {
+                        if GlobeVM.revealedCountries.contains(AppVM.countryGuess.trimmingCharacters(in: .whitespacesAndNewlines)) {
                             AppVM.alreadyGuessed = true
                         }
 
-                        if !GlobeVM.revealCountry(name: AppVM.countryGuess) && !AppVM.alreadyGuessed {
+                        if !GlobeVM.revealCountry(name: AppVM.countryGuess.trimmingCharacters(in: .whitespacesAndNewlines)) && !AppVM.alreadyGuessed {
                             AppVM.showGuessError = true
                         }
                         AppVM.countryGuess = ""
