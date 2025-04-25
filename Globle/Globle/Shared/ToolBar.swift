@@ -15,6 +15,7 @@ struct Toolbar: ViewModifier {
                 ToolbarItem(placement: .principal) {
                     Text("Globle")
                         .font(Font.custom("Montserrat", size: 50))
+                        .foregroundStyle(.black)
                 }
 
                 ToolbarItem(placement: .topBarTrailing) {

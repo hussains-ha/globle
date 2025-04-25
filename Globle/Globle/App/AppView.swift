@@ -22,6 +22,7 @@ struct AppView: View {
             VStack {
                 TextField("Enter Country Name Here", text: $AppVM.countryGuess)
                     .background(AppVM.isGameOver ? Color.gray : Color.white)
+                    .foregroundStyle(.black)
                     .padding()
                     .disabled(AppVM.isGameOver)
                     .onSubmit {
@@ -59,8 +60,10 @@ struct AppView: View {
 
                 GlobeView(GlobeVM: GlobeVM)
 
-                Text("Cloest Country: \(GlobeVM.closestCountry)")
+                Text("Closest Country: \(GlobeVM.closestCountry)")
+                    .foregroundStyle(.black)
                 Text("Distance to country: \(GlobeVM.closestDistance == 50000 ? "" : "\(Int(GlobeVM.closestDistance)) km") ")
+                    .foregroundStyle(.black)
             }
         }
     }

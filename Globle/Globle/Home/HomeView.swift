@@ -22,10 +22,11 @@ struct HomeView: View {
             VStack {
                 Text("Welcome to Globle")
                     .font(Font.custom("Montserrat", size: 30))
+                    .foregroundStyle(.black)
 
                 NavigationLink(destination:
                     AppView(GlobeVM: GlobeVM, AppVM: $AppVM)
-                    .toolbar()
+                        .toolbar()
 
                 ) {
                     Text("Click to Play")
@@ -36,7 +37,6 @@ struct HomeView: View {
                 }
                 .padding()
             }
-            
         }
     }
 }

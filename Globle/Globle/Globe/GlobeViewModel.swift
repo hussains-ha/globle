@@ -23,7 +23,7 @@ class GlobeViewModel {
     var closestCountry: String = ""
     var closestDistance: Double = 50000.0
 
-    let targetCountryName = "Estonia"
+    let targetCountryName = "France"
 
     init() {
         loadGeoJSON()
@@ -131,7 +131,7 @@ class GlobeViewModel {
 
         let geometry = SCNGeometry(sources: [vertexSource], elements: [element])
         geometry.firstMaterial?.isDoubleSided = true
-        geometry.firstMaterial?.transparency = 0.0
+//        geometry.firstMaterial?.transparency = 0.0
 
         if countryName == targetCountryName {
             geometry.firstMaterial?.diffuse.contents = UIColor.green
@@ -202,16 +202,16 @@ class GlobeViewModel {
             }
             return false
         }),
-        let target = countries.first(where: {
-            if case let .string(n) = $0.properties["ADMIN"] {
-                return n == targetCountryName
-            }
-            return false
-        }),
-        case let .number(guessLat) = guessed.properties["LABEL_Y"],
-        case let .number(guessLon) = guessed.properties["LABEL_X"],
-        case let .number(targetLat) = target.properties["LABEL_Y"],
-        case let .number(targetLon) = target.properties["LABEL_X"]
+            let target = countries.first(where: {
+                if case let .string(n) = $0.properties["ADMIN"] {
+                    return n == targetCountryName
+                }
+                return false
+            }),
+            case let .number(guessLat) = guessed.properties["LABEL_Y"],
+            case let .number(guessLon) = guessed.properties["LABEL_X"],
+            case let .number(targetLat) = target.properties["LABEL_Y"],
+            case let .number(targetLon) = target.properties["LABEL_X"]
         {
             let distance = haversine(lat1: guessLat, lon1: guessLon, lat2: targetLat, lon2: targetLon)
 
@@ -229,4 +229,5 @@ class GlobeViewModel {
         SCNTransaction.commit()
 
         return true
-    }}
+    }
+}
